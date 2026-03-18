@@ -30,6 +30,61 @@ This library standardizes AI code into three distinct categories based on human 
 - **Test Reviews:** 1+ (Human Verified)
 - **Concept:** A human developer has reviewed the AI's logic and tests, officially putting their name on the line alongside the LLM. Fully covered (100% branch coverage) by unit-tests. Requires a mandatory reviewer argument.
 
+## Installation
+
+### Python (PyPI)
+
+You can install the Python library directly from PyPI using your favorite package manager:
+
+```bash
+# Using pip
+pip install aicodesign
+
+# Using uv
+uv add aicodesign
+```
+
+### Java (GitHub Packages)
+
+The Java library is hosted on GitHub Packages. You must authenticate to GitHub Packages with a Personal Access Token (PAT) that has the `read:packages` scope.
+
+**1. Maven (`pom.xml`):**
+```xml
+<repositories>
+    <repository>
+        <id>github-esamtrade</id>
+        <url>https://maven.pkg.github.com/eSAMTrade/aicodesign</url>
+    </repository>
+</repositories>
+
+<dependencies>
+    <dependency>
+        <groupId>dev.aicodesign</groupId>
+        <artifactId>aicodesign</artifactId>
+        <version>0.1.0-SNAPSHOT</version>
+    </dependency>
+</dependencies>
+```
+
+**2. Gradle (`build.gradle.kts`):**
+```kotlin
+repositories {
+    mavenCentral()
+    maven {
+        name = "GitHubPackages"
+        url = uri("https://maven.pkg.github.com/eSAMTrade/aicodesign")
+        credentials {
+            username = project.findProperty("gpr.user") as String? ?: System.getenv("GITHUB_ACTOR")
+            password = project.findProperty("gpr.key") as String? ?: System.getenv("GITHUB_TOKEN")
+        }
+    }
+}
+
+dependencies {
+    implementation("dev.aicodesign:aicodesign:0.1.0-SNAPSHOT")
+}
+```
+
 ## Usage Examples
 
 ### Python
