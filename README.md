@@ -30,5 +30,54 @@ This library standardizes AI code into three distinct categories based on human 
 - **Test Reviews:** 1+ (Human Verified)
 - **Concept:** A human developer has reviewed the AI's logic and tests, officially putting their name on the line alongside the LLM. Fully covered (100% branch coverage) by unit-tests. Requires a mandatory reviewer argument.
 
+## Usage Examples
+
+### Python
+
+```python
+from aicodesign import ai_draft, ai_blackbox, ai_co_signed
+
+@ai_draft(ticket="HFT-101")
+def calculate_momentum_alpha(prices):
+    # Unreviewed logic and tests
+    pass
+
+@ai_blackbox(ticket="HFT-102", notes="Tests verify strict output boundaries")
+def parse_exchange_feed(payload):
+    # Logic is unreviewed, but a human vetted the test harness
+    pass
+
+@ai_co_signed(reviewer="alice.dev", ticket="HFT-103")
+def update_order_book(book, new_orders):
+    # A human has audited the logic and tests
+    pass
+```
+
+### Java
+
+```java
+import dev.aicodesign.AiDraft;
+import dev.aicodesign.AiBlackbox;
+import dev.aicodesign.AiCoSigned;
+
+public class OrderService {
+
+    @AiDraft(ticket="HFT-101")
+    public void calculateMomentumAlpha(Object prices) {
+        // Unreviewed logic and tests
+    }
+
+    @AiBlackbox(ticket="HFT-102", notes="Tests verify strict output boundaries")
+    public void parseExchangeFeed(Object payload) {
+        // Logic is unreviewed, but a human vetted the test harness
+    }
+
+    @AiCoSigned(reviewer="alice.dev", ticket="HFT-103")
+    public void updateOrderBook(Object book, Object newOrders) {
+        // A human has audited the logic and tests
+    }
+}
+```
+
 ## License
 MIT
