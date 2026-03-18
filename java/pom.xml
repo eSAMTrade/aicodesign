@@ -11,7 +11,15 @@
 
     <name>aicodesign</name>
     <description>Provenance and review tracking for AI-generated code.</description>
-    <url>https://github.com/yourusername/aicodesign</url>
+    <url>https://github.com/eSAMTrade/aicodesign</url>
+
+    <distributionManagement>
+        <repository>
+            <id>github-esamtrade-public-writeable</id>
+            <name>GitHub eSAMTrade Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/eSAMTrade/aicodesign</url>
+        </repository>
+    </distributionManagement>
 
     <properties>
         <maven.compiler.source>25</maven.compiler.source>
