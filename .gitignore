@@ -206,3 +206,6 @@ marimo/_static/
 marimo/_lsp/
 __marimo__/
 /.idea/
+
+# Local-only signing secrets for Maven Central (never commit)
+.publish-secrets/

@@ -44,44 +44,27 @@ pip install aicodesign
 uv add aicodesign
 ```
 
-### Java (GitHub Packages)
+### Java (Maven Central)
 
-The Java library is hosted on GitHub Packages. You must authenticate to GitHub Packages with a Personal Access Token (PAT) that has the `read:packages` scope.
+The Java library is published to Maven Central — no extra repository or authentication required.
 
 **1. Maven (`pom.xml`):**
 ```xml
-<repositories>
-    <repository>
-        <id>github-esamtrade</id>
-        <url>https://maven.pkg.github.com/eSAMTrade/aicodesign</url>
-    </repository>
-</repositories>
-
-<dependencies>
-    <dependency>
-        <groupId>dev.aicodesign</groupId>
-        <artifactId>aicodesign</artifactId>
-        <version>0.1.0-SNAPSHOT</version>
-    </dependency>
-</dependencies>
+<dependency>
+    <groupId>com.esamtrade</groupId>
+    <artifactId>aicodesign</artifactId>
+    <version>0.1.0</version>
+</dependency>
 ```
 
 **2. Gradle (`build.gradle.kts`):**
 ```kotlin
 repositories {
     mavenCentral()
-    maven {
-        name = "GitHubPackages"
-        url = uri("https://maven.pkg.github.com/eSAMTrade/aicodesign")
-        credentials {
-            username = project.findProperty("gpr.user") as String? ?: System.getenv("GITHUB_ACTOR")
-            password = project.findProperty("gpr.key") as String? ?: System.getenv("GITHUB_TOKEN")
-        }
-    }
 }
 
 dependencies {
-    implementation("dev.aicodesign:aicodesign:0.1.0-SNAPSHOT")
+    implementation("com.esamtrade:aicodesign:0.1.0")
 }
 ```
 

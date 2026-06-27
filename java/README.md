@@ -10,14 +10,20 @@ In fast-moving environments, using LLMs to generate code accelerates development
 
 ## Installation
 
-Add the following dependency to your `pom.xml`:
+Available on Maven Central — no extra repository or authentication needed.
 
+**Maven (`pom.xml`):**
 ```xml
 <dependency>
-    <groupId>dev.aicodesign</groupId>
+    <groupId>com.esamtrade</groupId>
     <artifactId>aicodesign</artifactId>
-    <version>0.1.0-SNAPSHOT</version>
+    <version>0.1.0</version>
 </dependency>
+```
+
+**Gradle (`build.gradle.kts`):**
+```kotlin
+implementation("com.esamtrade:aicodesign:0.1.0")
 ```
 
 ## Usage Examples
