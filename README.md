@@ -80,6 +80,11 @@ def calculate_momentum_alpha(prices):
     # Unreviewed logic and tests
     pass
 
+# Suppress the runtime warning and avoid wrapping the function
+@ai_draft(ticket="HFT-104", show_warning=False)
+def calculate_reviewed_offline_metric(values):
+    pass
+
 @ai_blackbox(ticket="HFT-102", notes="Tests verify strict output boundaries")
 def parse_exchange_feed(payload):
     # Logic is unreviewed, but a human vetted the test harness

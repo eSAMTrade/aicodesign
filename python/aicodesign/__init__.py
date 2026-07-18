@@ -8,16 +8,27 @@ from typing import Optional, Any, Callable
 
 logger = logging.getLogger(__name__)
 
-def ai_draft(author: str = "LLM", ticket: Optional[str] = None, notes: Optional[str] = None) -> Callable[[Any], Any]:
+def ai_draft(
+    author: str = "LLM",
+    ticket: Optional[str] = None,
+    notes: Optional[str] = None,
+    show_warning: bool = True,
+) -> Callable[[Any], Any]:
     """
     Tier 3 (High Risk): Pure AI draft.
     0 reviews on code, 0 reviews on tests.
+
+    Set ``show_warning=False`` to attach provenance metadata without wrapping
+    the decorated function, matching the behavior of ``ai_blackbox``.
     """
     def decorator(obj: Any) -> Any:
         obj.__ai_provenance__ = "draft"
         obj.__ai_author__ = author
         obj.__ai_ticket__ = ticket
         obj.__ai_notes__ = notes
+
+        if not show_warning:
+            return obj
 
         @functools.wraps(obj)
         def wrapper(*args: Any, **kwargs: Any) -> Any:
