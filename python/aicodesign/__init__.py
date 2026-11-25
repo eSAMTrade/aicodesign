@@ -4,16 +4,19 @@ aicodesign - Provenance and review tracking for AI-generated code.
 
 import functools
 import logging
-from typing import Optional, Any, Callable
+from collections.abc import Callable
+from typing import Any, TypeVar
 
 logger = logging.getLogger(__name__)
 
+_Decorated = TypeVar("_Decorated")
+
 def ai_draft(
     author: str = "LLM",
-    ticket: Optional[str] = None,
-    notes: Optional[str] = None,
+    ticket: str | None = None,
+    notes: str | None = None,
     show_warning: bool = True,
-) -> Callable[[Any], Any]:
+) -> Callable[[_Decorated], _Decorated]:
     """
     Tier 3 (High Risk): Pure AI draft.
     0 reviews on code, 0 reviews on tests.
@@ -41,7 +44,7 @@ def ai_draft(
     return decorator
 
 
-def ai_blackbox(author: str = "LLM", ticket: Optional[str] = None, notes: Optional[str] = None) -> Callable[[Any], Any]:
+def ai_blackbox(author: str = "LLM", ticket: str | None = None, notes: str | None = None) -> Callable[[_Decorated], _Decorated]:
     """
     Tier 2 (Medium Risk): AI Blackbox.
     0 reviews on code logic, but bounded/verified by human-reviewed unit tests.
@@ -55,7 +58,7 @@ def ai_blackbox(author: str = "LLM", ticket: Optional[str] = None, notes: Option
     return decorator
 
 
-def ai_co_signed(reviewer: str, author: str = "LLM", ticket: Optional[str] = None, notes: Optional[str] = None) -> Callable[[Any], Any]:
+def ai_co_signed(reviewer: str, author: str = "LLM", ticket: str | None = None, notes: str | None = None) -> Callable[[_Decorated], _Decorated]:
     """
     Tier 1 (Lower Risk): AI code co-signed by a human.
     1 human review on code, 1+ human review on tests.
